@@ -29,7 +29,7 @@ void MainWindow::loadSudoku(){
     QString fileName = QFileDialog::getOpenFileName(this, "Seleccionar archivo Sudoku", "", "Archivos de text  (*.txt)");
     if (fileName.isEmpty()) return;
 
-    qDebug() << "archivo cargado" << fileName;
+    //qDebug() << "archivo cargado" << fileName;
 
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -50,11 +50,10 @@ void MainWindow::loadSudoku(){
     displaySudoku();
 
     this->fileName = fileName;
-    qDebug() << "Archivo asignado a fileName:" << this->fileName;
+    //qDebug() << "Archivo asignado a fileName:" << this->fileName;
 }
 
 void MainWindow::displaySudoku(){
-    //ui->tableSudoku->clear();
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
             if (sudoku[i][j] != 0){
@@ -69,19 +68,12 @@ void MainWindow::displaySudoku(){
 }
 
 void MainWindow::solveSudoku(){
-    qDebug() << "Archivo en solveSudoku: " << fileName;
+    //qDebug() << "Archivo en solveSudoku: " << fileName;
     if (fileName.isEmpty()){
         QMessageBox::warning(this, "Error", "No se  ha cargado  ningún archivo");
         return;
     }
     QString selectedAlgorithm = ui->comboAlgorithm->currentText();
-
-    /*int sudokuGrid[SIZE][SIZE];
-    for (int i = 0; i < SIZE;  ++i){
-        for (int j = 0; j < SIZE; ++j) {
-            sudokuGrid[i][j] = ui->tableSudoku->item(i, j)->text().toInt();
-        }
-    }*/
 
     bool solved = false;   
     if  (selectedAlgorithm == "DFS"){
@@ -120,22 +112,3 @@ void MainWindow::solveSudoku(){
         QMessageBox::warning(this, "Error", "No se pudo reolver el Sudoku");
     }
 }
-
-/*void MainWindow::displaySolution(){
-    SudokuSolver::SudokuDFS solver(fileName.toStdString());
-    if (solver.solve()){
-        int (&grid)[SIZE][SIZE] = solver.getGrid();
-
-        for (int i = 0; i < SIZE; ++i) {
-            for (int j = 0; j < SIZE; ++j) {
-                if (ui->tableSudoku->item(i, j)->text().isEmpty()){
-                    ui->tableSudoku->item(i, j)->setText(QString::number(grid[i][j]));
-                }
-            }
-        }
-    } else{
-        QMessageBox::warning(this, "Error", "No se pudo resolver el sudoku");
-    }
-
-
-}*/

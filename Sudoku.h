@@ -23,7 +23,7 @@ public:
     virtual bool solve() = 0;  // Método virtual puro (abstracto) para resolver
     virtual ~Sudoku();  // Destructor virtual
 
-    int (&getGrid())[SIZE][SIZE]{
+    int (&getGrid())[SIZE][SIZE]{   // Método para devolver la matriz
         return grid;
     }
 };

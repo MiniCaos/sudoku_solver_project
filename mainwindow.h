@@ -30,7 +30,6 @@ private:
     Ui::MainWindow *ui;
     int sudoku[9][9];
     QString fileName;
-    //Sudoku* sudoku = new SudokuSolver::SudokuDFS(fileName.toStdString());
 
     void displaySudoku();
     void displaySolution();
